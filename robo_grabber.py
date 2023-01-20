@@ -9,5 +9,9 @@ driver = webdriver.Firefox(options=options)
 url = sys.argv[1]
 
 driver.get(url)
-print(driver.find_element_by_xpath("//*[@id='robots_txt']").text)
+try:
+    robots_txt = driver.find_element_by_xpath("//*[@id='robots_txt']")
+    print(robots_txt.text)
+except Exception as e:
+    print("robots.txt not found.")
 driver.quit()
